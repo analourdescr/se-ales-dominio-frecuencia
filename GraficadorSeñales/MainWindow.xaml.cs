@@ -166,7 +166,41 @@ namespace GraficadorSeñales
                     break;
             }
         }
+
+        private void btn_TransformadaDeFourier_Click(object sender, RoutedEventArgs e)
+        {
+            Señal transformada = Señal.transformar(señal);
+            transformada.actualizarAmplitudMaxima();
+
+
+            // Limpieza de polylines
+            plnGrafica_Resultado.Points.Clear();
+
+            // Impresión de la amplitud máxima en los labels de la ventana.
+            lbl_AmplitudMaxima_Resultado.Text = transformada.AmplitudMaxima.ToString("F");
+            lbl_AmplitudMinima_Resultado.Text = "-" + transformada.AmplitudMaxima.ToString("F");
+
+            if (señal != null)
+            {
+                // Sirve para recorrer una coleccion o arreglo
+                foreach (Muestra muestra in transformada.Muestras)
+                {
+                    plnGrafica_Resultado.Points.Add(new Point((muestra.X - transformada.TiempoInicial) * scrContenedor_Resultado.Width, (muestra.Y / transformada.AmplitudMaxima * ((scrContenedor_Resultado.Height / 2) - 30) * -1 + (scrContenedor_Resultado.Height / 2))));
+                }
+            }
+
+
+            // Línea del Eje X
+            plnEjeX_Resultado.Points.Clear();
+            plnEjeX_Resultado.Points.Add(new Point(0, scrContenedor_Resultado.Height / 2));
+            plnEjeX_Resultado.Points.Add(new Point((transformada.TiempoFinal - transformada.TiempoInicial) * scrContenedor_Resultado.Width, scrContenedor_Resultado.Height / 2));
+
+            // Línea del Eje Y
+            plnEjeY_Resultado.Points.Clear();
+            plnEjeY_Resultado.Points.Add(new Point((-transformada.TiempoInicial) * scrContenedor_Resultado.Width, 0));
+            plnEjeY_Resultado.Points.Add(new Point((-transformada.TiempoInicial) * scrContenedor_Resultado.Width, scrContenedor_Resultado.Height));
+        }
+
         
-       
     }
 }

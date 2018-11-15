@@ -57,6 +57,6 @@
                 <Polyline Stroke="Black" StrokeThickness="0.3" Name="plnEjeY_Resultado"/>
             </Grid>
         </ScrollViewer>
-        <Button Content="Transformada de Fourier" HorizontalAlignment="Left" Margin="491,75,0,0" VerticalAlignment="Top" Width="158" Height="19" Name="btn_TransformadaDeFourier"/>
+        <Button Content="Transformada de Fourier" HorizontalAlignment="Left" Margin="491,75,0,0" VerticalAlignment="Top" Width="158" Height="19" Name="btn_TransformadaDeFourier" Click="btn_TransformadaDeFourier_Click"/>
     </Grid>
 </Window>
